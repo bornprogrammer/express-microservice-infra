@@ -23,7 +23,7 @@ const productSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  ProductFeatures: {
+  productFeatures: {
     ref: "ProductFeature",
     type: [Schema.Types.ObjectId],
     required: true,

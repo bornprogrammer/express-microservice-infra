@@ -5,7 +5,7 @@ import ProductFeature from "../mongo-schemas/ProductFeature.js";
 class ProductService extends BaseService {
   async getProductList() {
     const result = await Product.find({ isActive: true, isDeleted: false }).populate({
-      path: "ProductFeatures",
+      path: "productFeatures",
       match: { isActive: true, isDeleted: false },
     });
     return result;
