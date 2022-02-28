@@ -14,11 +14,31 @@ const planSchema = new Schema({
   product: {
     type: Schema.Types.ObjectId,
     required: true,
-    ref: "Product",
+  },
+  price: {
+    type: Number,
+    required: true,
   },
   benefits: {
-    type: String,
+    type: [{ elapseValue: { type: String, required: true }, productFeatures: { ref: "ProductFeature", type: Schema.Types.ObjectId } }],
     required: true,
+  },
+  planExpirationType: {
+    type: String,
+    enum: ["monthly", "quarterly", "half-yearly", "annually"],
+    required: true,
+  },
+  isRecommended: {
+    type: Boolean,
+    default: false,
+  },
+  isActive: {
+    type: Boolean,
+    default: true,
+  },
+  isDeleted: {
+    type: Boolean,
+    default: false,
   },
 }, {
   timestamps: true,

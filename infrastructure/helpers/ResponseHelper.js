@@ -20,6 +20,9 @@ class ResponseHelper {
       case HttpMethod.PATCH:
         httpStatus = HttpResponseStatus.RESOURCES_CREATED;
         break;
+      case HttpMethod.GET:
+        httpStatus = (result || (result instanceof Array && result.length === 0) || (result instanceof Object && Object.keys(result).length === 0)) ? HttpResponseStatus.RESPONSE_NOT_FOUND : HttpResponseStatus.RESOURCES_FOUND;;
+        break;
       default:
         break;
     }
