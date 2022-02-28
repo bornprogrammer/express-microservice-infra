@@ -13,6 +13,7 @@ import { createLogger, transports } from "winston";
 import cors from "cors";
 
 import bodyParser from "body-parser";
+
 import appRoutes from "./src/routes/index.js";
 
 import { mongooseConnect } from "./src/database/mongooseConnect.js";

@@ -21,9 +21,11 @@ const productFeatureSchema = new Schema({
   },
   elapsedType: {
     type: String,
-    enum: ["value_count", "days_count"],
+    enum: ["value_count", "days_count", "plan_validity"],
     required: true,
   },
 }, {
   timestamps: true,
 });
+
+export default mongoose.model("ProductFeature", productFeatureSchema);
