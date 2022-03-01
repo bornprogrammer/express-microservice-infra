@@ -98,7 +98,6 @@ class OAuthModel {
     return User
       .findOne({ email: username })
       .then(async (user) => {
-        console.log("my data", user.email, user.id, user.password);
         const validPassword = await bcrypt.compare(password, user.password);
         return validPassword ? user : false;
       })

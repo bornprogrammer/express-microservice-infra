@@ -1,16 +1,16 @@
 import mongoose from "mongoose";
 import config from "config";
 
-export const mongooseConnect = () => {
+export default async () => {
 
-  mongoose.connect(config.get("mongo_uri"), {
+  await mongoose.connect(config.get("mongo_uri"), {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   });
 
   const db = mongoose.connection;
   db.on("error", console.error.bind(console, "connection error: "));
-  db.once("open", function () {
+  db.once("open", () => {
     console.log("Connected successfully");
   });
 };

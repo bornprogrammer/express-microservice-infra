@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { InvalidRequestError } from "oauth2-server";
+import { InvalidRequestError, InvalidClientError, InvalidGrantError, UnsupportedGrantTypeError } from "oauth2-server";
 import HttpResponseStatus from "../constants/HttpResponseStatus.js";
 import HttpMethod from "../constants/HttpMethod.js";
 
@@ -50,7 +50,7 @@ class ResponseHelper {
   }
 
   isOAuthServerError(error) {
-    return error instanceof InvalidRequestError;
+    return error instanceof InvalidRequestError || error instanceof InvalidClientError || error instanceof InvalidGrantError || error instanceof UnsupportedGrantTypeError;
   }
 
   isMongooseError(error) {

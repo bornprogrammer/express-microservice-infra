@@ -4,11 +4,11 @@ import joiValidationHelper from "../../infrastructure/helpers/joiValidationHelpe
 import planServiceIns from "../services/PlanService.js";
 
 class PlanController extends BaseController {
-  planServiceIns = planServiceIns;
+  planService = planServiceIns;
 
   async getPlans(req, res) {
     const validatedValue = joiValidationHelper(planListSchema, { productId: req.params.productId });
-    const result = await planServiceIns.getPlans(validatedValue);
+    const result = await this.planService.getPlans(validatedValue);
     return result;
   }
 }

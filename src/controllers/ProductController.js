@@ -2,10 +2,10 @@ import BaseController from "./BaseController.js";
 import productServiceIns from "../services/ProductService.js";
 
 class ProductController extends BaseController {
-  productServiceIns = productServiceIns;
+  productService = productServiceIns;
 
   async getProductList(req, res) {
-    const result = await productServiceIns.getProductList();
+    const result = await this.productService.getProductList();
     return result;
   }
 }

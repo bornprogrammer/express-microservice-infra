@@ -1,5 +1,5 @@
 
-import userControllerIns from "../controllers/UserController.js";
+import userControllerIns from "../controllers/EmployerController.js";
 
 import BaseRoutes from "./BaseRoutes.js";
 

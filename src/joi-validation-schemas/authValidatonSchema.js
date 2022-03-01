@@ -3,8 +3,9 @@ import UserType from "../../infrastructure/constants/UserType.js";
 import SignUpType from "../../infrastructure/constants/SignUpType.js";
 
 const signUpSchema = Joi.object({
-  userType: Joi.string().trim().valid(UserType.EMPLOYER, UserType.INTERVIEWER, UserType.RECRUITER).required(),
-  name: Joi.string().trim().min(3).max(50).regex(/[a-zA-Z][a-zA-Z ]*/).required(),
+  userType: Joi.string().trim().valid(UserType.EMPLOYER, UserType.INTERVIEWER, UserType.RECRUITER, UserType.SUBEMPLOYER).required(),
+  fname: Joi.string().trim().min(3).max(50).regex(/[a-zA-Z][a-zA-Z ]*/).required(),
+  lname: Joi.string().trim().min(3).max(50).regex(/[a-zA-Z][a-zA-Z ]*/).required(),
   password: Joi.string().trim().min(6).max(16).required(),
   signupType: Joi.string().trim().valid(SignUpType.GOOGLE, SignUpType.LINKED_IN, SignUpType.INCRUITER).required(),
   email: Joi.string().trim().email().required(),

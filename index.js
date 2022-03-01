@@ -16,7 +16,7 @@ import bodyParser from "body-parser";
 
 import appRoutes from "./src/routes/index.js";
 
-import { mongooseConnect } from "./src/database/mongooseConnect.js";
+import mongooseConnect from "./src/database/mongooseConnect.js";
 
 const app = express();
 
@@ -33,12 +33,15 @@ const logger = createLogger({
 app.use(cors());
 
 app.use(bodyParser.json());
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/api", appRoutes());
 
-app.listen(config.get("port"), () => {
-  mongooseConnect();
-  logger.info("Server started at ")
-  // console.log("server started attt", config.get("PORT"));
+app.listen(config.get("port"), async () => {
+  logger.info("Server started at ");
+  await mongooseConnect();
+
 });
+
+export default app;

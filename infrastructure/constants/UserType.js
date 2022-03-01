@@ -1,8 +1,11 @@
 
+
 export default class UserType {
-  static RECRUITER = "recruiter";
+  static EMPLOYER = "employer";
 
   static INTERVIEWER = "interviewer";
 
-  static EMPLOYER = "employer";
+  static RECRUITER = "recruiter";
+
+  static SUBEMPLOYER = "subemployer";
 }
