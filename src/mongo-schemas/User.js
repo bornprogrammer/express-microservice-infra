@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 import UserStatus from "../../infrastructure/constants/UserStatus.js";
 
 import UserType from "../../infrastructure/constants/UserType.js";
+
 import SignUpType from "../../infrastructure/constants/SignUpType.js";
 
 const { Schema } = mongoose;
@@ -53,10 +54,16 @@ const userSchema = new Schema({
     type: { address1: { type: String, required: true }, address2: { type: String }, pincode: { type: String, required: true }, city: { type: String, required: true }, state: { type: String, required: true } },
   },
   company: {
-    type: { name: { type: String, required: true }, email: { type: String, required: true }, address: { type: String, required: true }, city: { type: String, required: true }, state: { type: String, required: true }, pincode: { type: String, required: true }, companyFoundedIn: { type: String }, industryType: { type: Schema.Types.ObjectId, required: true, ref: "IndustryType" } },
+    type: { name: { type: String, required: true }, email: { type: String, required: true }, address: { address: { type: String, required: true }, city: { type: String, required: true }, state: { type: String, required: true }, pincode: { type: String, required: true } }, companyFoundedIn: { type: String }, industryType: { type: Schema.Types.ObjectId, required: true, ref: "IndustryType" } },
   },
   scope: {
     type: String,
+    default: "profile",
+  },
+  phone: {
+    type: String,
+    minlength: 10,
+    maxlength: 10,
   },
 },
   {
