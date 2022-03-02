@@ -54,7 +54,7 @@ const userSchema = new Schema({
     type: { address1: { type: String, required: true }, address2: { type: String }, pincode: { type: String, required: true }, city: { type: String, required: true }, state: { type: String, required: true } },
   },
   company: {
-    type: { name: { type: String, required: true }, email: { type: String, required: true }, address: { address: { type: String, required: true }, city: { type: String, required: true }, state: { type: String, required: true }, pincode: { type: String, required: true } }, companyFoundedIn: { type: String }, industryType: { type: Schema.Types.ObjectId, required: true, ref: "IndustryType" } },
+    type: { name: { type: String, required: true }, email: { type: String, required: true }, address: { address: { type: String, required: true }, city: { type: String, required: true }, state: { type: String, required: true }, pincode: { type: String, required: true } }, companyFoundedIn: { type: String }, industryType: { type: Schema.Types.ObjectId, required: true, ref: "IndustryType" }, aboutUs: { type: String } },
   },
   scope: {
     type: String,

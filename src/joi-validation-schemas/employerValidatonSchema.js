@@ -11,6 +11,8 @@ const employerValidatonSchema = Joi.object({
   }).required(),
   companyFoundedIn: Joi.string().trim().min(4).max(4),
   industryType: Joi.string().trim().min(24).max(24),
+  userId: Joi.string().trim().min(24).max(24),
+  aboutUs: Joi.string().trim(),
 });
 
 // eslint-disable-next-line import/prefer-default-export
