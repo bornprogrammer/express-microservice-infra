@@ -12,10 +12,10 @@ class ResponseHelper {
         httpStatus = HttpResponseStatus.RESOURCES_CREATED;
         break;
       case HttpMethod.DELETE:
-        httpStatus = HttpResponseStatus.RESOURCES_DELETED;
+        httpStatus = HttpResponseStatus.RESOURCES_PUT_DELETED;
         break;
       case HttpMethod.PUT:
-        httpStatus = HttpResponseStatus.RESOURCES_CREATED;
+        httpStatus = HttpResponseStatus.RESOURCES_PUT_DELETED;
         break;
       case HttpMethod.PATCH:
         httpStatus = HttpResponseStatus.RESOURCES_CREATED;

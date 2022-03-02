@@ -9,7 +9,9 @@ export default class HttpResponseStatus {
 
   static RESOURCES_CREATED = 201;
 
-  static RESOURCES_DELETED = 200;
+  static RESOURCES_PUT_DELETED = 200; // WHEN UPDATED AND DELETED (WITH  a response)
+
+  static RESOURCES_DELETED_WITH_NO_RESPONSE = 204; // WHEN DELETED (WITHOUT  a response)
 
   static UNAUTHORIZED = 401;
 

@@ -4,7 +4,7 @@ import User from "../mongo-schemas/User.js";
 
 class EmployerService extends BaseService {
 
-  async updateBusinessDetails(params) {
+  async updateCompanyDetails(params) {
     const companyDetails = { ...params };
     delete companyDetails.userId;
     const result = User.findByIdAndUpdate(params.userId, { company: companyDetails });

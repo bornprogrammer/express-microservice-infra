@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-const employerValidatonSchema = Joi.object({
+const companyValidatonSchema = Joi.object({
   name: Joi.string().trim().min(3).max(255).required(),
   email: Joi.string().trim().email().required(),
   address: Joi.object().keys({
@@ -16,4 +16,4 @@ const employerValidatonSchema = Joi.object({
 });
 
 // eslint-disable-next-line import/prefer-default-export
-export { employerValidatonSchema };
+export { companyValidatonSchema };
