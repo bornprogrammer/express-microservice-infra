@@ -74,8 +74,8 @@ class OAuthModel {
   }
 
   getClient(clientId, clientSecret) {
-    const options = { client_id: clientId };
-    if (clientSecret) options.client_secret = clientSecret;
+    const options = { clientId };
+    if (clientSecret) options.clientSecret = clientSecret;
 
     return OAuthClient
       .findOne(options)
