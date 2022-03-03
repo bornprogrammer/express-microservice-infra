@@ -42,4 +42,33 @@ describe("testing auth apis", () => {
     expect(response.body.message).toEqual("Unsupported grant type: `grant_type` is invalid");
   })
 
+  test("400 bad request when username is missing", async () => {
+    delete loginBody.username;
+    const response = await request(app).post(path).send(loginBody).set(header);
+    expect(response.status).toEqual(400);
+    expect(response.body.message).toEqual("Missing parameter: `username`");
+  })
+
+  test("400 bad request when username is invalid", async () => {
+    loginBody.username = "wrong username";
+    const response = await request(app).post(path).send(loginBody).set(header);
+    expect(response.status).toEqual(400);
+    expect(response.body.message).toEqual("Invalid grant: user credentials are invalid");
+  })
+
+  test("400 bad request when password is missing", async () => {
+    delete loginBody.password;
+    const response = await request(app).post(path).send(loginBody).set(header);
+    expect(response.status).toEqual(400);
+    expect(response.body.message).toEqual("Missing parameter: `password`");
+  })
+
+  test("400 bad request when password is invalid", async () => {
+    loginBody.password = "wrong password";
+    const response = await request(app).post(path).send(loginBody).set(header);
+    expect(response.status).toEqual(400);
+    expect(response.body.message).toEqual("Invalid grant: user credentials are invalid");
+  })
+
+
 })
