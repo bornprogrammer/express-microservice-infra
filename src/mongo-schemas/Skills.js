@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
+
 import EntityStatus from "../../infrastructure/constants/EntityStatus";
+
+import SkillType from "../constants/SkillType.js";
 
 const { Schema } = mongoose;
 
@@ -13,18 +16,22 @@ const skillSchema = new Schema({
     ref: "domain",
     required: true,
   },
-  expRange: {
-    type: String,
+  type: {
     required: true,
-  },
-  skills: {
     type: String,
-    required: true,
+    enum: [SkillType.MANDATORY, SkillType.OPTIONAL, SkillType.OTHERS],
   },
   status: {
     type: String,
     default: EntityStatus.ACTIVE,
     enum: [EntityStatus.ACTIVE, EntityStatus.INACTIVE, EntityStatus.DELETED],
+  },
+  // when created by user
+  createdBy: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: false,
+    default: null,
   },
 
 }, {

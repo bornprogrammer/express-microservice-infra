@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
 import EntityStatus from "../../infrastructure/constants/EntityStatus";
+import ScreeningQuestionType from "../constants/ScreeningQuestionType";
 
 const { Schema } = mongoose;
 
-const screenQuestionSchema = new Schema({
+const screeningQuestionSchema = new Schema({
   question: {
     type: String,
     required: true,
@@ -13,13 +14,14 @@ const screenQuestionSchema = new Schema({
     default: EntityStatus.ACTIVE,
     enum: [EntityStatus.ACTIVE, EntityStatus.INACTIVE, EntityStatus.DELETED],
   },
-  isCustom: {
-    type: Boolean,
-    default: true,
+  type: {
+    type: String,
+    enum: [ScreeningQuestionType.SYSTEM_CREATED, ScreeningQuestionType.USER_CREATED],
+    default: ScreeningQuestionType.SYSTEM_CREATED,
   },
 }, {
   timestamps: true,
 });
 
 
-export default mongoose.model("ScreenQuestion", screenQuestionSchema);
+export default mongoose.model("ScreeningQuestion", screeningQuestionSchema);
