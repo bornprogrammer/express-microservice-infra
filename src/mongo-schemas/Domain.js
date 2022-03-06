@@ -18,5 +18,4 @@ const domainSchema = new Schema({
   timestamps: true,
 });
 
-
 export default mongoose.model("Domain", domainSchema);

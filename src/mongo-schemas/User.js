@@ -56,6 +56,16 @@ const userSchema = new Schema({
   company: {
     type: { name: { type: String, required: true }, email: { type: String, required: true }, address: { address: { type: String, required: true }, city: { type: String, required: true }, state: { type: String, required: true }, pincode: { type: String, required: true } }, companyFoundedIn: { type: String }, industryType: { type: Schema.Types.ObjectId, required: true, ref: "IndustryType" }, aboutUs: { type: String } },
   },
+  metadata: {
+    type: {
+      bucketName: {
+        type: String,
+      },
+      dbName: {
+        type: String,
+      },
+    },
+  },
   scope: {
     type: String,
     default: "profile",

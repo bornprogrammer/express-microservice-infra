@@ -13,6 +13,10 @@ const positionSchema = new Schema({
     ref: "domain",
     required: true,
   },
+  positionId: {
+    type: String,
+    required: true,
+  },
   expRange: {
     type: String,
     required: true,
@@ -21,15 +25,20 @@ const positionSchema = new Schema({
     type: String,
     required: true,
   },
-  mandatorySkills: {
-    type: [Schema.Types.ObjectId],
-    ref: "Skill",
+  skills: {
+    type: {
+      mandatory: {
+        type: [Schema.Types.ObjectId],
+        required: true,
+        ref: "Skill",
+      },
+      optional: {
+        type: [Schema.Types.ObjectId],
+        required: false,
+        ref: "Skill",
+      },
+    },
     required: true,
-  },
-  optionalSkills: {
-    type: [Schema.Types.ObjectId],
-    ref: "Skill",
-    required: false,
   },
   status: {
     type: String,
@@ -39,10 +48,18 @@ const positionSchema = new Schema({
   screeningQuestions: {
     type: [Schema.Types.ObjectId],
     required: true,
-    ref: "ScreenQuestion",
+    ref: "ScreeningQuestion",
   },
 }, {
   timestamps: true,
+});
+
+
+// eslint-disable-next-line func-names
+positionSchema.pre("save", function (next) {
+  const context = this;
+  context.positionId = "idd";
+  next();
 });
 
 export default mongoose.model("Position", positionSchema);

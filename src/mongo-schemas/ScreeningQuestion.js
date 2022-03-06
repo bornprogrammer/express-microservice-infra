@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import EntityStatus from "../../infrastructure/constants/EntityStatus";
-import ScreeningQuestionType from "../constants/ScreeningQuestionType";
+import EntityStatus from "../../infrastructure/constants/EntityStatus.js";
+import ScreeningQuestionType from "../constants/ScreeningQuestionType.js";
 
 const { Schema } = mongoose;
 
