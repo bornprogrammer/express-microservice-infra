@@ -12,6 +12,8 @@ import masterRoutesIns from "./MasterRoutes.js";
 
 import employerRoutesIns from "./EmployerRoutes.js";
 
+import positionRoutesIns from "./PositionRoutes.js";
+
 export default () => {
   const router = express.Router();
   router.use("/v1/auth", authRoutesIns.setRoutes());
@@ -20,5 +22,6 @@ export default () => {
   router.use("/v1/plans", planRoutesIns.setRoutes());
   router.use("/v1/masters", masterRoutesIns.setRoutes());
   router.use("/v1/employer", employerRoutesIns.setRoutes());
+  router.use("/v1/positions", positionRoutesIns.setRoutes());
   return router;
 };
