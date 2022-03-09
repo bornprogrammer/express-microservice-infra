@@ -15,7 +15,7 @@ class PositionController extends BaseController {
 
   async createPosition(req, res) {
     try {
-      
+
       const result = await s3BucketFileUploaderIns.upload("sandeep.txt");
       return { Location: result.Location, file: req.file };
     } catch (error) {
