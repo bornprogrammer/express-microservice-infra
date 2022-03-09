@@ -25,6 +25,17 @@ class AuthController extends BaseController {
     const token = await oAuthServerCon.token(request, response);
     return token;
   }
+
+  // async addSubUser(req, res) {
+
+  //   const result = { name: "rahul", email: "rahul12@gmail.com" }
+
+  //   return result;
+
+
+  // }
+
+
 }
 
 export default new AuthController();

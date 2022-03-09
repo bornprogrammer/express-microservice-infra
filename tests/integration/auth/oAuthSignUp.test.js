@@ -27,7 +27,7 @@ describe("testing signUp apis", () => {
   });
 
   // test("400 bad request when usertype is missing", async () => {
-  //   delete signUpBody  .userType;
+  //   delete signUpBody.userType;
   //   const response = await request(app).post(path).send(signUpBody).set(header);
   //   expect(response.status).toEqual(400);
   //   expect(response.body.message).toEqual("\"userType\" is required");
@@ -91,10 +91,4 @@ describe("testing signUp apis", () => {
   //   expect(response.body.result._id.length).toEqual(24);
   //   expect(response.body.result.email).toEqual(signUpBody.email);
   // })
-
-
-
-
-
-
 });

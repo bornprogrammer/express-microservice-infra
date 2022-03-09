@@ -7,6 +7,10 @@ class AuthRoutes extends BaseRoutes {
   setRoutes() {
     this.router.post("/signup", authControllerIns.invoke(authControllerIns.signUp));
     this.router.post("/oauth/token", authControllerIns.invoke(authControllerIns.authenticate));
+    // eslint-disable-next-line no-undef
+    // this.router.post("/subuser", authControllerIns.invoke(authControllerIns.addSubUser))
+
+
     return this.router;
   }
 }

@@ -39,11 +39,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/api", appRoutes());
 
-// app.listen(config.get("port"), async () => {
-//   logger.info("Server started at ");
-//   await mongooseConnect();
+app.listen(config.get("port"), async () => {
+  logger.info("Server started at ");
+  await mongooseConnect();
 
-// });
+});
 
 
 
