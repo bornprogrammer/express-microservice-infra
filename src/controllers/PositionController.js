@@ -7,8 +7,9 @@ import positionServiceIns from "../services/PositionService.js";
 
 class PositionController extends BaseController {
 
-  getScreeningQuestions(req, res) {
-    
+  async getScreeningQuestions(req, res) {
+    const result = positionServiceIns.getScreeningQuestions();
+    return result;
   }
 
   getDomain(req, res) {

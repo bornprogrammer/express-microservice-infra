@@ -2,6 +2,8 @@ import BaseService from "./BaseService.js";
 
 import Positions from "../mongo-schemas/Positions.js";
 
+import ScreeningQuestion from "../mongo-schemas/ScreeningQuestion.js";
+
 class PositionService extends BaseService {
 
   async createPosition(input, file) {
@@ -18,6 +20,11 @@ class PositionService extends BaseService {
     const result = await Positions(positionObject).save();
     return result;
     // return { skills: JSON.parse(input.skills), customSkills: JSON.parse(input.customSkills) };
+  }
+
+  async getScreeningQuestions() {
+    const result = await ScreeningQuestion.find({});
+    return result;
   }
 
 }
