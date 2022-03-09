@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import EntityStatus from "../../infrastructure/constants/EntityStatus";
+import EntityStatus from "../../infrastructure/constants/EntityStatus.js";
 
 const { Schema } = mongoose;
 
@@ -10,12 +10,12 @@ const positionSchema = new Schema({
   },
   domain: {
     type: Schema.Types.ObjectId,
-    ref: "domain",
+    ref: "Domain",
     required: true,
   },
   positionId: {
     type: String,
-    required: true,
+    required: false,
   },
   expRange: {
     type: String,
