@@ -26,15 +26,6 @@ class AuthController extends BaseController {
     return token;
   }
 
-  // async addSubUser(req, res) {
-
-  //   const result = { name: "rahul", email: "rahul12@gmail.com" }
-
-  //   return result;
-
-
-  // }
-
 
 }
 

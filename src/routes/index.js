@@ -16,6 +16,8 @@ import positionRoutesIns from "./PositionRoutes.js";
 
 import subUserRoutesIns from "./SubUserRoutes.js";
 
+import interviewRoutesIns from "./InterviewRoutes.js";
+
 export default () => {
   const router = express.Router();
   router.use("/v1/auth", authRoutesIns.setRoutes());
@@ -27,5 +29,6 @@ export default () => {
   router.use("/v1/positions", positionRoutesIns.setRoutes());
   // eslint-disable-next-line no-undef
   router.use("/v1/subuser", subUserRoutesIns.setRoutes());
+  router.use("/v1/interviews", interviewRoutesIns.setRoutes());
   return router;
 };

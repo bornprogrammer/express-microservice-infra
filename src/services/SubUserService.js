@@ -3,7 +3,7 @@ import BaseService from "./BaseService.js";
 
 class SubUserService extends BaseService {
 
-  async addSubUser(req, res) {
+  async addSubUser() {
     // eslint-disable-next-line no-import-assign
     const result = { firstname: "Saurav", lastname: "joshi", email: "sauravjjoshi1@gmail.com" }
 
@@ -16,12 +16,12 @@ class SubUserService extends BaseService {
     return result;
   }
 
-  async updateSubUser(req, res) {
+  async updateSubUser(req) {
     const result = { firstname: "amit", lastname: "verma", email: "amitv12@gmail.com", id: req.params.subUserId }
     return result;
   }
 
-  async deleteSubUser(req, res) {
+  async deleteSubUser() {
     const result = {};
     // eslint-disable-next-line no-unused-expressions
     result;
