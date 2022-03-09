@@ -9,5 +9,4 @@ class PlanRoutes extends BaseRoutes {
     return this.router;
   }
 }
-
 export default new PlanRoutes();

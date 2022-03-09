@@ -25,6 +25,8 @@ class AuthController extends BaseController {
     const token = await oAuthServerCon.token(request, response);
     return token;
   }
+
+
 }
 
 export default new AuthController();
