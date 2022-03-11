@@ -4,6 +4,13 @@ import Positions from "../mongo-schemas/Positions.js";
 
 import ScreeningQuestion from "../mongo-schemas/ScreeningQuestion.js";
 
+import Domain from "../mongo-schemas/Domain.js";
+
+import Skills from "../mongo-schemas/Skills.js";
+
+
+
+
 class PositionService extends BaseService {
 
   async createPosition(input, file) {
@@ -18,12 +25,49 @@ class PositionService extends BaseService {
     }
 
     const result = await Positions(positionObject).save();
+
+    this.createCustom(input.customScreeningQuestions);
+
+
+
+
+    // const screeningObject = {
+    //   // question : input
+    // }
+    // // const newResult = await ScreeningQuestion(
+
     return result;
+
+
     // return { skills: JSON.parse(input.skills), customSkills: JSON.parse(input.customSkills) };
   }
 
+  async createCustom(customScreeningQuestions1) {
+    const customScreeningQuestions = JSON.parse(customScreeningQuestions1);
+    console.log(customScreeningQuestions);
+    customScreeningQuestions.forEach(async (item) => {
+      const newResult = await ScreeningQuestion({
+        question: item,
+        type: "user_created",
+      }).save();
+      return newResult;
+    })
+
+
+  }
+
   async getScreeningQuestions() {
-    const result = await ScreeningQuestion.find({});
+    const result = await ScreeningQuestion.find({ status: "inactive" });
+    return result;
+  }
+
+  async getDomain() {
+    const result = await Domain.find({ status: "active" });
+    return result;
+  }
+
+  async getSkills() {
+    const result = await Skills.find({ status: "active", type: "optional" });
     return result;
   }
 
