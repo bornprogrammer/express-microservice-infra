@@ -1,3 +1,4 @@
+/* eslint-disable prefer-template */
 
 import BaseService from "./BaseService.js";
 import Product from "../mongo-schemas/Product.js";
@@ -11,6 +12,10 @@ class PlanService extends BaseService {
       match: { isActive: true, isDeleted: false },
     });
     return result;
+  }
+
+  async testttt(name, greetType) {
+    return greetType + " " + name;
   }
 }
 

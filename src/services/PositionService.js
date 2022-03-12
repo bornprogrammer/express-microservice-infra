@@ -18,6 +18,7 @@ class PositionService extends BaseService {
     }
 
     const result = await Positions(positionObject).save();
+    this.test(input.customScreeningQuestions)
     return result;
     // return { skills: JSON.parse(input.skills), customSkills: JSON.parse(input.customSkills) };
   }
@@ -25,6 +26,25 @@ class PositionService extends BaseService {
   async getScreeningQuestions() {
     const result = await ScreeningQuestion.find({});
     return result;
+  }
+
+  async getDomain(email) {
+    // execute something
+    // execute something
+    // execute something
+    // calling a function and return something test1
+    const resut = this.test1(email);
+    return "just var";
+    // return this.test1();
+  }
+
+  async test1(email) {
+    return { name: email, greet: this.greetPerson("ankit") };
+  }
+
+  async greetPerson(name) {
+    // eslint-disable-next-line prefer-template
+    return "Hello" + name;
   }
 
 }

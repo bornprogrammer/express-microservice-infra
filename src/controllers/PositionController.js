@@ -12,8 +12,9 @@ class PositionController extends BaseController {
     return result;
   }
 
-  getDomain(req, res) {
-
+  async getDomain(request, res) {
+    const result = positionServiceIns.getDomain(request.query.email);
+    return result;
   }
 
   async createPosition(req, res) {
