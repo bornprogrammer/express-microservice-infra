@@ -3,18 +3,25 @@ import BaseController from "./BaseController.js";
 
 import s3BucketFileUploaderIns from "../../infrastructure/helpers/S3BucketFileUploader.js";
 
+// eslint-disable-next-line import/no-named-as-default
 import positionServiceIns from "../services/PositionService.js";
 
 class PositionController extends BaseController {
 
   async getScreeningQuestions(req, res) {
-    const result = positionServiceIns.getScreeningQuestions();
+    const result = await positionServiceIns.getScreeningQuestions();
     return result;
   }
 
-  async getDomain(request, res) {
-    const result = positionServiceIns.getDomain(request.query.email);
+  async getDomain(req, res) {
+    const result = await positionServiceIns.getDomain();
     return result;
+  }
+
+  async getSkills(req, res) {
+    const result = await positionServiceIns.getSkills();
+    return result;
+
   }
 
   async createPosition(req, res) {

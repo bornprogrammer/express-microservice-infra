@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-import EntityStatus from "../../infrastructure/constants/EntityStatus";
+import EntityStatus from "../../infrastructure/constants/EntityStatus.js";
 
 import SkillType from "../constants/SkillType.js";
 

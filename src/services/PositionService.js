@@ -4,6 +4,10 @@ import Positions from "../mongo-schemas/Positions.js";
 
 import ScreeningQuestion from "../mongo-schemas/ScreeningQuestion.js";
 
+import Domain from "../mongo-schemas/Domain.js";
+
+import Skills from "../mongo-schemas/Skills.js";
+
 class PositionService extends BaseService {
 
   async createPosition(input, file) {
@@ -18,35 +22,37 @@ class PositionService extends BaseService {
     }
 
     const result = await Positions(positionObject).save();
-    this.test(input.customScreeningQuestions)
+
+    // this.createCustom(input.customScreeningQuestions);
     return result;
-    // return { skills: JSON.parse(input.skills), customSkills: JSON.parse(input.customSkills) };
+  }
+
+  async createCustom(customScreeningQuestions1) {
+    const customScreeningQuestions = JSON.parse(customScreeningQuestions1);
+    console.log(customScreeningQuestions);
+    customScreeningQuestions.forEach(async (item) => {
+      const newResult = await ScreeningQuestion({
+        question: item,
+        type: "user_created",
+      }).save();
+      return newResult;
+    })
   }
 
   async getScreeningQuestions() {
-    const result = await ScreeningQuestion.find({});
+    const result = await ScreeningQuestion.find({ status: "inactive" });
     return result;
   }
 
-  async getDomain(email) {
-    // execute something
-    // execute something
-    // execute something
-    // calling a function and return something test1
-    const resut = this.test1(email);
-    return "just var";
-    // return this.test1();
+  async getDomain() {
+    const result = await Domain.find({ status: "active" });
+    return result;
   }
 
-  async test1(email) {
-    return { name: email, greet: this.greetPerson("ankit") };
+  async getSkills() {
+    const result = await Skills.find({ status: "active", type: "optional" });
+    return result;
   }
-
-  async greetPerson(name) {
-    // eslint-disable-next-line prefer-template
-    return "Hello" + name;
-  }
-
 }
 
 
