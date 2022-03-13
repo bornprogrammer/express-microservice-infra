@@ -1,6 +1,0 @@
-{
-  "jwt_issuer": "incruiter",
-  "jwt_access_token_expiry_seconds": 1800,
-  "jwt_refresh_token_expiry_seconds": 1209600,
-  "isToBeSeeded": false
-}

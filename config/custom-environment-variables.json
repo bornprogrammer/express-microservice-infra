@@ -1,8 +1,0 @@
-{
-  "port": "PORT",
-  "mongo_uri": "MONGO_URI",
-  "jwt_access_token_secret": "JWT_ACCESS_TOKEN_SECRET",
-  "jwt_refresh_token_secret": "JWT_REFRESH_TOKEN_SECRET",
-  "aws_access_key": "AWS_ACCESS_KEY",
-  "aws_secret_access_key": "AWS_SECRET_ACCESS_KEY"
-}

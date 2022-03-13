@@ -1,4 +1,4 @@
-import responseHelperIns from "../../infrastructure/helpers/ResponseHelper.js";
+import responseHelperIns from "../helpers/ResponseHelper.js";
 
 export default class BaseController {
 

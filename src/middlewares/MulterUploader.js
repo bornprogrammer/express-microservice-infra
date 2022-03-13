@@ -1,8 +1,6 @@
 
 import multer from "multer";
 
-import config from "config";
-
 class MulterUploader {
 
   multerStorageConfig = multer.diskStorage({
