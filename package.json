@@ -1,7 +1,7 @@
 {
   "name": "incruiter-app",
-  "version": "1.1.0",
-  "description": "backend app",
+  "version": "1.1.1",
+  "description": "infrastructure app for incruiter",
   "type": "module",
   "main": "index.js",
   "scripts": {
