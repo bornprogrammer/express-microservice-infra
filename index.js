@@ -9,8 +9,6 @@ import IncruiterErrors from "./src/errors/index.js";
 import appMiddleware from "./src/middlewares/AppMiddleware.js";
 import multerUploaderIns from "./src/middlewares/MulterUploader.js";
 import Constants from "./src/constants/index.js";
-import BaseRoutes from "./src/routes/BaseRoutes.js";
-
 
 export default {
   mongooseConnect,
@@ -22,7 +20,6 @@ export default {
   appMiddleware,
   multerUploaderIns,
   Constants,
-  BaseRoutes,
 }
 
 
