@@ -1,4 +1,4 @@
-import mongooseConnect from "./src/database/mongooseConnect.js";
+import mongooseConnect, { conn } from "./src/database/mongooseConnect.js";
 import HttpHelper from "./src/helpers/HttpHelper.js";
 import joiValidationHelper from "./src/helpers/joiValidationHelper.js";
 import S3BucketFileUploader from "./src/helpers/S3BucketFileUploader.js";
@@ -10,8 +10,10 @@ import appMiddleware from "./src/middlewares/AppMiddleware.js";
 import multerUploaderIns from "./src/middlewares/MulterUploader.js";
 import Constants from "./src/constants/index.js";
 
+const mongooseConnection = conn;
 export default {
   mongooseConnect,
+  mongooseConnection,
   HttpHelper,
   joiValidationHelper,
   BaseController,

@@ -13,3 +13,5 @@ export default async ({ mongoUser, mongoPassword, mongoURL, mongoDB }) => {
     useUnifiedTopology: true,
   });
 };
+const conn = mongoose.connection;
+export { conn };

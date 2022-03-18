@@ -1,6 +1,4 @@
 
-
-
 export default class UtilHelper {
 
   generateRandomString(strLength) {
