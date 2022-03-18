@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import mongoose from "mongoose";
 import { InvalidRequestError, InvalidClientError, InvalidGrantError, UnsupportedGrantTypeError, InvalidScopeError, AccessDeniedError, InsufficientScopeError, InvalidArgumentError, InvalidTokenError, ServerError, UnauthorizedClientError, UnauthorizedRequestError, UnsupportedResponseTypeError } from "oauth2-server";
 import HttpResponseStatus from "../constants/HttpResponseStatus.js";
@@ -12,7 +13,8 @@ class ResponseHelper {
         httpStatus = HttpResponseStatus.RESOURCES_CREATED;
         break;
       case HttpMethod.DELETE:
-        httpStatus = HttpResponseStatus.RESOURCES_PUT_DELETED;
+        httpStatus = HttpResponseStatus.RESOURCES_DELETED_WITH_NO_RESPONSE;
+        result = null;
         break;
       case HttpMethod.PUT:
         httpStatus = HttpResponseStatus.RESOURCES_PUT_DELETED;
