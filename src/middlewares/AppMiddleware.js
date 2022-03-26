@@ -10,6 +10,11 @@ const appMiddleware = ({ app, router }) => {
 
   app.use(bodyParser.urlencoded({ extended: false }));
 
+  app.use("/health", (req, res) => {
+    res.status(200);
+    res.send();
+  });
+
   app.use("/api", router);
 
 }

@@ -5,7 +5,7 @@ import InternalServerError from "../errors/InternalServerError.js";
 class HttpHelper {
 
   axiosConfig = {
-    method: "get",
+    method: "",
     url: "",
     params: {
     },
@@ -19,7 +19,6 @@ class HttpHelper {
   }
 
   setPayload(paylaod) {
-    this.axiosConfig.method = "post";
     this.axiosConfig.data = paylaod;
     return this;
   }
@@ -29,9 +28,39 @@ class HttpHelper {
     return this;
   }
 
+  async get() {
+    this.axiosConfig.method = "get";
+    const response = await this.call();
+    return response;
+  }
+
+  async post() {
+    this.axiosConfig.method = "post";
+    const response = await this.call();
+    return response;
+  }
+
+  async put() {
+    this.axiosConfig.method = "put";
+    const response = await this.call();
+    return response;
+  }
+
+  async delete() {
+    this.axiosConfig.method = "delete";
+    const response = await this.call();
+    return response;
+  }
+
+  async patch() {
+    this.axiosConfig.method = "patch";
+    const response = await this.call();
+    return response;
+  }
+
   async call() {
     try {
-      const result = axios(this.axiosConfig);
+      const result = await axios(this.axiosConfig);
       return result;
     } catch (error) {
       throw new InternalServerError(error.message);
