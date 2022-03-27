@@ -18,6 +18,11 @@ class HttpHelper {
     return this;
   }
 
+  setPath(pathVals) {
+    this.axiosConfig.url += `/${pathVals.join("/")}`;
+    return this;
+  }
+
   setPayload(paylaod) {
     this.axiosConfig.data = paylaod;
     return this;

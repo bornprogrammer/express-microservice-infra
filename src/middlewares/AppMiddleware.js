@@ -2,6 +2,8 @@ import cors from "cors";
 
 import bodyParser from "body-parser";
 
+import config from "config";
+
 const appMiddleware = ({ app, router }) => {
 
   app.use(cors())
@@ -9,11 +11,6 @@ const appMiddleware = ({ app, router }) => {
   app.use(bodyParser.json());
 
   app.use(bodyParser.urlencoded({ extended: false }));
-
-  app.use("/health", (req, res) => {
-    res.status(200);
-    res.send();
-  });
 
   app.use("/api", router);
 
