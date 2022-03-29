@@ -1,11 +1,13 @@
 import mongoose from "mongoose";
 
+import logger from "../helpers/LoggerHelper.js";
+
 export default async ({ mongoUser, mongoPassword, mongoURL, mongoDB }) => {
 
   const db = mongoose.connection;
-  db.on("error", console.error.bind(console, "connection error: "));
+  db.on("error", logger.error.bind(logger, "db connection error: "));
   db.once("open", () => {
-    console.log("Connected successfully");
+    logger.info("db connected successfully");
   });
   const mongoURI = `mongodb+srv://${mongoUser}:${mongoPassword}@${mongoURL}/${mongoDB}`;
   await mongoose.connect(mongoURI, {
