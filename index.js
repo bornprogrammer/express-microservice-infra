@@ -9,7 +9,7 @@ import IncruiterErrors from "./src/errors/index.js";
 import appMiddleware from "./src/middlewares/AppMiddleware.js";
 import multerUploaderIns from "./src/middlewares/MulterUploader.js";
 import Constants from "./src/constants/index.js";
-import logger from "./src/helpers/LoggerHelper.js";
+import logger from "./src/loggers/Logger.js";
 
 const mongooseConnection = conn;
 export default {

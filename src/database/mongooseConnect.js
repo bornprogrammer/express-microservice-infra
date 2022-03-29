@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 
-import logger from "../helpers/LoggerHelper.js";
-
-export default async ({ mongoUser, mongoPassword, mongoURL, mongoDB }) => {
+export default async ({ mongoUser, mongoPassword, mongoURL, mongoDB, logger }) => {
 
   const db = mongoose.connection;
   db.on("error", logger.error.bind(logger, "db connection error: "));

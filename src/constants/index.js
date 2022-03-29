@@ -13,4 +13,6 @@ import UserType from "./UserType.js";
 
 import EntityCreatedType from "./EntityCreatedType.js";
 
-export default { EntityStatus, HttpMethod, HttpResponseStatus, SignUpType, UserStatus, UserType, EntityCreatedType }
+import EnvironmentType from "./EnvironmentType.js";
+
+export default { EntityStatus, HttpMethod, HttpResponseStatus, SignUpType, UserStatus, UserType, EntityCreatedType, EnvironmentType };
