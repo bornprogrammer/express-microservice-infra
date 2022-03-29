@@ -2,6 +2,8 @@ import axios from "axios";
 
 import InternalServerError from "../errors/InternalServerError.js";
 
+import logger from "./LoggerHelper.js";
+
 class HttpHelper {
 
   axiosConfig = {
@@ -65,9 +67,11 @@ class HttpHelper {
 
   async call() {
     try {
+      logger.info(this.axiosConfig);
       const result = await axios(this.axiosConfig);
       return result;
     } catch (error) {
+      logger.error(error);
       throw new InternalServerError(error.message);
     }
   }

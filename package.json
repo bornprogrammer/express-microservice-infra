@@ -1,14 +1,9 @@
 {
   "name": "incruiter-app",
-  "version": "1.1.8",
+  "version": "1.2.1",
   "description": "infrastructure app for incruiter",
   "type": "module",
   "main": "index.js",
-  "scripts": {
-    "test": "jest --setupFiles=dotenv/config",
-    "dev": "nodemon -r dotenv/config index.js",
-    "start": "node -r dotenv/config index.js"
-  },
   "author": "Sandeep Kosta",
   "license": "ISC",
   "dependencies": {
@@ -17,15 +12,14 @@
     "axios": "^0.26.1",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.2",
-    "config": "^3.3.7",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.0",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "mongoose": "^6.2.3",
     "multer": "^1.4.4",
-    "oauth2-server": "^3.1.1"
+    "oauth2-server": "^3.1.1",
+    "winston": "^3.6.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",
