@@ -1,17 +1,25 @@
 import axios from "axios";
-
+import ApiResponseError from "../errors/ApiResponseError.js";
 import InternalServerError from "../errors/InternalServerError.js";
 
 class HttpHelper {
 
-  axiosConfig = {
-    method: "",
-    url: "",
-    params: {
-    },
-    headers: {
-    },
-  };
+  axiosConfig = {};
+
+  constructor() {
+    this.initAxiosConfig();
+  }
+
+  initAxiosConfig() {
+    this.axiosConfig = {
+      method: "",
+      url: "",
+      params: {
+      },
+      headers: {
+      },
+    };
+  }
 
   setURL(url) {
     this.axiosConfig.url = url;
@@ -65,12 +73,18 @@ class HttpHelper {
 
   async call() {
     try {
+      console.log("this.axiosConfig", this.axiosConfig);
       const result = await axios(this.axiosConfig);
+      this.initAxiosConfig();
       return result;
     } catch (error) {
+      this.initAxiosConfig();
+      if (error.response) {
+        throw new ApiResponseError(error);
+      }
       throw new InternalServerError(error.message);
     }
   }
 }
 
-export default () => new HttpHelper();
+export default new HttpHelper();

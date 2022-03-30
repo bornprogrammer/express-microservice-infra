@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import { InvalidRequestError, InvalidClientError, InvalidGrantError, UnsupportedGrantTypeError, InvalidScopeError, AccessDeniedError, InsufficientScopeError, InvalidArgumentError, InvalidTokenError, ServerError, UnauthorizedClientError, UnauthorizedRequestError, UnsupportedResponseTypeError } from "oauth2-server";
 import HttpResponseStatus from "../constants/HttpResponseStatus.js";
 import HttpMethod from "../constants/HttpMethod.js";
+import ApiResponseError from "../errors/ApiResponseError.js";
 
 class ResponseHelper {
 
@@ -82,16 +83,21 @@ class ResponseHelper {
     if (this.isMongooseError(error)) {
       // db error
       this.sendResponse(res, 500, this.buildResponseSchema(null, error.message));
-    } else if (this.isHttpResponseError(error)) {
-      //
-      this.sendResponse(res, error.code, this.buildResponseSchema(null, error.message));
     } else if (this.isOAuthServerError(error)) {
       // oauth2-server error
       this.sendResponse(res, error.code, this.buildResponseSchema(null, error.message));
-    } else {
-      // 500 internal server error
+    } else if (this.isApiResponseError(error)) {
+      this.sendResponse(res, error.code, this.buildResponseSchema(error.data, error.message));
+    } else if (this.isHttpResponseError(error)) {
+      this.sendResponse(res, error.code, this.buildResponseSchema(null, error.message));
+    }
+    else {
       this.sendResponse(res, 500, this.buildResponseSchema(null, error.message));
     }
+  }
+
+  isApiResponseError(error) {
+    return error && error instanceof ApiResponseError;
   }
 
   isOAuthServerError(error) {

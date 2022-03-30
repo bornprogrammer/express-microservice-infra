@@ -4,6 +4,7 @@ import joiValidationHelper from "./src/helpers/joiValidationHelper.js";
 import S3BucketFileUploader from "./src/helpers/S3BucketFileUploader.js";
 import UtilHelper from "./src/helpers/UtilHelper.js";
 import BaseController from "./src/controllers/BaseController.js";
+import BaseAppService from "./src/app-services/BaseAppService.js";
 import BaseService from "./src/services/BaseService.js";
 import IncruiterErrors from "./src/errors/index.js";
 import appMiddleware from "./src/middlewares/AppMiddleware.js";
@@ -24,6 +25,7 @@ export default {
   multerUploaderIns,
   Constants,
   logger,
+  BaseAppService,
 }
 
 
