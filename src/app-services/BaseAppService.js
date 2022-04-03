@@ -50,4 +50,26 @@ export default class BaseAppService {
       throw error;
     }
   }
+
+  async put(payload) {
+    try {
+      const result = await this.httpHelper.setPayload(payload).put();
+      this.initConfig();
+      return result;
+    } catch (error) {
+      this.initConfig();
+      throw error;
+    }
+  }
+
+  async delete() {
+    try {
+      const result = await this.httpHelper.delete();
+      this.initConfig();
+      return result;
+    } catch (error) {
+      this.initConfig();
+      throw error;
+    }
+  }
 }
