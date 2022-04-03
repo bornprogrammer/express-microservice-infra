@@ -85,6 +85,7 @@ class ResponseHelper {
       this.sendResponse(res, 500, this.buildResponseSchema(null, error.message));
     } else if (this.isOAuthServerError(error)) {
       // oauth2-server error
+      console.log("otherr");
       this.sendResponse(res, error.code, this.buildResponseSchema(null, error.message));
     } else if (this.isApiResponseError(error)) {
       this.sendResponse(res, error.code, this.buildResponseSchema(error.data, error.message));

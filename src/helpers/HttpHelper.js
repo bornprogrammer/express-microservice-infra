@@ -73,11 +73,12 @@ class HttpHelper {
 
   async call() {
     try {
-      console.log("this.axiosConfig", this.axiosConfig);
+      console.log("axiosConfig", this.axiosConfig);
       const result = await axios(this.axiosConfig);
       this.initAxiosConfig();
       return result.data;
     } catch (error) {
+      console.log("axios-error", error);
       this.initAxiosConfig();
       if (error.response) {
         throw new ApiResponseError(error);

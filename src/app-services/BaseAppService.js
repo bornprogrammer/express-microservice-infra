@@ -17,8 +17,15 @@ export default class BaseAppService {
   }
 
   setBaseURL() {
-    // const apiURL = config.get("api_base_url") + url;
-    // this.httpHelper.setURL(apiURL);
+    const { apiServiceConf, serviceName } = this.getServiceDetails();
+    const baseUrl = apiServiceConf.base_url;
+    const port = apiServiceConf[serviceName].port ? `:${apiServiceConf[serviceName].port}` : "";
+    const apiURL = `${baseUrl}${port}/${apiServiceConf[serviceName].path} `;
+    this.httpHelper.setURL(apiURL);
+  }
+
+  getServiceDetails() {
+    return { apiServiceConf: "", serviceName: "" };
   }
 
   setPath(paths) {
