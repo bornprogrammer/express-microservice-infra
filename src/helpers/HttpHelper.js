@@ -76,7 +76,7 @@ class HttpHelper {
       console.log("this.axiosConfig", this.axiosConfig);
       const result = await axios(this.axiosConfig);
       this.initAxiosConfig();
-      return result;
+      return result.data;
     } catch (error) {
       this.initAxiosConfig();
       if (error.response) {

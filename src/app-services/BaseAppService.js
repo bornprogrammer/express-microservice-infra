@@ -30,7 +30,7 @@ export default class BaseAppService {
     try {
       const result = await this.httpHelper.get();
       this.initConfig();
-      return result;
+      return result.result;
     } catch (error) {
       this.initConfig();
       if (HttpResponseStatus.RESPONSE_NOT_FOUND === error.code) {
@@ -44,7 +44,7 @@ export default class BaseAppService {
     try {
       const result = await this.httpHelper.setPayload(payload).post();
       this.initConfig();
-      return result;
+      return result.result;
     } catch (error) {
       this.initConfig();
       throw error;
@@ -55,7 +55,7 @@ export default class BaseAppService {
     try {
       const result = await this.httpHelper.setPayload(payload).put();
       this.initConfig();
-      return result;
+      return result.result;
     } catch (error) {
       this.initConfig();
       throw error;
