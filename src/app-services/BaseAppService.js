@@ -33,9 +33,20 @@ export default class BaseAppService {
       return result;
     } catch (error) {
       this.initConfig();
-      if (HttpResponseStatus.RESPONSE_NOT_FOUND) {
+      if (HttpResponseStatus.RESPONSE_NOT_FOUND === error.code) {
         return null;
       }
+      throw error;
+    }
+  }
+
+  async post(payload) {
+    try {
+      const result = await this.httpHelper.setPayload(payload).post();
+      this.initConfig();
+      return result;
+    } catch (error) {
+      this.initConfig();
       throw error;
     }
   }
