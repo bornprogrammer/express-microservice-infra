@@ -45,10 +45,10 @@ export default class BaseAppService {
     return this;
   }
 
-  async call(methodName, methodParams) {
+  async call(methodName) {
     try {
       const methodNameMapper = { get: "get", getWithoutThrow: "get", post: "post", put: "put", delete: "delete", patch: "patch" };
-      const result = await this.httpHelperIns[methodNameMapper[methodName]](methodParams);
+      const result = await this.httpHelperIns[methodNameMapper[methodName]]();
       this.initConfig();
       return result.result;
     } catch (error) {
@@ -71,12 +71,14 @@ export default class BaseAppService {
   }
 
   async post(payload) {
-    const result = await this.call("post", payload);
+    this.httpHelperIns.setPayload(payload);
+    const result = await this.call("post");
     return result;
   }
 
   async put(payload) {
-    const result = await this.call("put", payload);
+    this.httpHelperIns.setPayload(payload);
+    const result = await this.call("put");
     return result;
   }
 
