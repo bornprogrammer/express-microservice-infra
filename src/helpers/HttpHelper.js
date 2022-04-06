@@ -36,6 +36,11 @@ class HttpHelper {
     return this;
   }
 
+  setHeaders(headers) {
+    this.axiosConfig.headers = { ...this.axiosConfig.headers, ...headers };
+    return this;
+  }
+
   setQueryString(queryStringObj) {
     this.axiosConfig.params = queryStringObj;
     return this;
@@ -88,4 +93,4 @@ class HttpHelper {
   }
 }
 
-export default new HttpHelper();
+export default HttpHelper;
