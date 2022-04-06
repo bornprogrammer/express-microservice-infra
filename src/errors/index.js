@@ -5,7 +5,7 @@ import ForbiddenError from "./ForbiddenError.js";
 import InternalServerError from "./InternalServerError.js";
 import HttpResponseError from "./HttpResponseError.js";
 import UnProcessableEntity from "./UnProcessableEntity.js";
-import ApiResponseError from "./ApiResponseError.js";
+import IncruiterServiceApiResponseError from "./IncruiterServiceApiResponseError.js";
 
 export default {
   BadRequestError,
@@ -14,5 +14,5 @@ export default {
   InternalServerError,
   HttpResponseError,
   UnProcessableEntity,
-  ApiResponseError,
+  IncruiterServiceApiResponseError,
 }

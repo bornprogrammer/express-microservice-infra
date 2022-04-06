@@ -1,5 +1,6 @@
 
 import HttpResponseStatus from "../constants/HttpResponseStatus.js";
+import IncruiterServiceApiResponseError from "../errors/IncruiterServiceApiResponseError.js";
 import HttpHelper from "../helpers/HttpHelper.js";
 
 // will be extended by child app classed to be used for calling another micro service
@@ -55,7 +56,7 @@ export default class BaseAppService {
       if (methodName === "get" && HttpResponseStatus.RESPONSE_NOT_FOUND === error.code) {
         return null;
       }
-      throw error;
+      throw new IncruiterServiceApiResponseError(error);
     }
   }
 
