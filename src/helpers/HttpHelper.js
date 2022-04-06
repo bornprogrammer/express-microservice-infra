@@ -1,5 +1,6 @@
 import axios from "axios";
-import ApiResponseError from "../errors/ApiResponseError.js";
+// import ApiResponseError from "../errors/ApiResponseError.js";
+import CustomAxiosError from "../errors/CustomAxiosError.js";
 import InternalServerError from "../errors/InternalServerError.js";
 
 class HttpHelper {
@@ -86,7 +87,7 @@ class HttpHelper {
       console.log("axios-error", error);
       this.initAxiosConfig();
       if (error.response) {
-        throw new ApiResponseError(error);
+        throw new CustomAxiosError(error);
       }
       throw new InternalServerError(error.message);
     }

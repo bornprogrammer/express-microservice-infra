@@ -44,14 +44,15 @@ export default class BaseAppService {
     return this;
   }
 
-  async call(methodName) {
+  async call(methodName, methodParams) {
     try {
-      const result = await this.httpHelperIns[methodName]();
+      const methodNameMapper = { get: "get", getWithoutThrow: "get", post: "post", put: "put", delete: "delete", patch: "patch" };
+      const result = await this.httpHelperIns[methodNameMapper[methodName]](methodParams);
       this.initConfig();
       return result.result;
     } catch (error) {
       this.initConfig();
-      if (HttpResponseStatus.RESPONSE_NOT_FOUND === error.code) {
+      if (methodName === "get" && HttpResponseStatus.RESPONSE_NOT_FOUND === error.code) {
         return null;
       }
       throw error;
@@ -61,60 +62,30 @@ export default class BaseAppService {
   async get() {
     const result = await this.call("get");
     return result;
-    // try {
-    //   const result = await this.httpHelperIns.get();
-    //   this.initConfig();
-    //   return result.result;
-    // } catch (error) {
-    //   this.initConfig();
-    //   if (HttpResponseStatus.RESPONSE_NOT_FOUND === error.code) {
-    //     return null;
-    //   }
-    //   throw error;
-    // }
   }
 
   async getWithoutThrow() {
-    try {
-      const result = await this.httpHelperIns.get();
-      this.initConfig();
-      return result.result;
-    } catch (error) {
-      this.initConfig();
-      throw error;
-    }
+    const result = await this.call("getWithoutThrow");
+    return result;
   }
 
   async post(payload) {
-    try {
-      const result = await this.httpHelperIns.setPayload(payload).post();
-      this.initConfig();
-      return result.result;
-    } catch (error) {
-      this.initConfig();
-      throw error;
-    }
+    const result = await this.call("post", payload);
+    return result;
   }
 
   async put(payload) {
-    try {
-      const result = await this.httpHelperIns.setPayload(payload).put();
-      this.initConfig();
-      return result.result;
-    } catch (error) {
-      this.initConfig();
-      throw error;
-    }
+    const result = await this.call("put", payload);
+    return result;
   }
 
   async delete() {
-    try {
-      const result = await this.httpHelperIns.delete();
-      this.initConfig();
-      return result;
-    } catch (error) {
-      this.initConfig();
-      throw error;
-    }
+    const result = await this.call("delete");
+    return result;
+  }
+
+  async patch() {
+    const result = await this.call("patch");
+    return result;
   }
 }

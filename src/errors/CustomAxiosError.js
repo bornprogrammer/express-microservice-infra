@@ -1,8 +1,6 @@
 import HttpResponseError from "./HttpResponseError.js";
 
-
-export default class ApiResponseError extends HttpResponseError {
-
+export default class CustomAxiosError extends HttpResponseError {
   data;
 
   constructor(error) {

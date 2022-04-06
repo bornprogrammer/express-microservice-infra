@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 import { InvalidRequestError, InvalidClientError, InvalidGrantError, UnsupportedGrantTypeError, InvalidScopeError, AccessDeniedError, InsufficientScopeError, InvalidArgumentError, InvalidTokenError, ServerError, UnauthorizedClientError, UnauthorizedRequestError, UnsupportedResponseTypeError } from "oauth2-server";
 import HttpResponseStatus from "../constants/HttpResponseStatus.js";
 import HttpMethod from "../constants/HttpMethod.js";
-import ApiResponseError from "../errors/ApiResponseError.js";
+import CustomAxiosError from "../errors/CustomAxiosError.js";
+import IncruiterServiceApiResponseError from "../errors/IncruiterServiceApiResponseError.js";
 
 class ResponseHelper {
 
@@ -85,7 +86,6 @@ class ResponseHelper {
       this.sendResponse(res, 500, this.buildResponseSchema(null, error.message));
     } else if (this.isOAuthServerError(error)) {
       // oauth2-server error
-      console.log("otherr");
       this.sendResponse(res, error.code, this.buildResponseSchema(null, error.message));
     } else if (this.isApiResponseError(error)) {
       this.sendResponse(res, error.code, this.buildResponseSchema(error.data, error.message));
@@ -98,7 +98,7 @@ class ResponseHelper {
   }
 
   isApiResponseError(error) {
-    return error && error instanceof ApiResponseError;
+    return error && (error instanceof CustomAxiosError || error instanceof IncruiterServiceApiResponseError);
   }
 
   isOAuthServerError(error) {
