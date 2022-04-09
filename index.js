@@ -1,7 +1,7 @@
 import mongooseConnect, { conn } from "./src/database/mongooseConnect.js";
 import HttpHelper from "./src/helpers/HttpHelper.js";
 import joiValidationHelper from "./src/helpers/joiValidationHelper.js";
-import S3BucketFileUploader from "./src/helpers/S3BucketFileUploader.js";
+import s3BucketFileUploaderIns from "./src/helpers/S3BucketFileUploader.js";
 import UtilHelper from "./src/helpers/UtilHelper.js";
 import BaseController from "./src/controllers/BaseController.js";
 import BaseAppService from "./src/app-services/BaseAppService.js";
@@ -20,7 +20,9 @@ export default {
   joiValidationHelper,
   BaseController,
   BaseService,
-  IncruiterErrors, UtilHelper, S3BucketFileUploader,
+  IncruiterErrors,
+  UtilHelper,
+  s3BucketFileUploaderIns,
   appMiddleware,
   multerUploaderIns,
   Constants,
