@@ -8,6 +8,7 @@ class MongooseWhereCluaseHelper {
     return this.findByIdAndUpdate(entityId, { status: { $ne: EntityStatus.DELETED } }, { status }, { new: true });
   }
 
+  //
   getList() {
 
   }
