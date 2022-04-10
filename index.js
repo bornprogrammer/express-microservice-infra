@@ -1,6 +1,7 @@
 import mongooseConnect, { conn } from "./src/database/mongooseConnect.js";
 import HttpHelper from "./src/helpers/HttpHelper.js";
 import joiValidationHelper from "./src/helpers/joiValidationHelper.js";
+import mongooseWhereCluaseHelperIns from "./src/helpers/MongooseWhereCluaseHelper.js";
 import s3BucketFileUploaderIns from "./src/helpers/S3BucketFileUploader.js";
 import UtilHelper from "./src/helpers/UtilHelper.js";
 import BaseController from "./src/controllers/BaseController.js";
@@ -28,6 +29,7 @@ export default {
   Constants,
   logger,
   BaseAppService,
+  mongooseWhereCluaseHelperIns,
 }
 
 
