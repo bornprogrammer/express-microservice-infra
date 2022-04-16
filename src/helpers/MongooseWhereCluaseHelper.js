@@ -8,8 +8,16 @@ class MongooseWhereCluaseHelper {
     return this.findOneAndUpdate({ _id: entityId, status: { $ne: EntityStatus.DELETED } }, { status }, { new: true });
   }
 
-  //
+  updateEntityById(entityId, payload) {
+    return this.findOneAndUpdate({ _id: entityId, status: EntityStatus.ACTIVE }, payload, { new: true });
+  }
+
+  // will use it to return the list with paginatin
   getList() {
+
+  }
+
+  getAdminList() {
 
   }
 }
