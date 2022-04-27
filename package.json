@@ -1,6 +1,6 @@
 {
   "name": "incruiter-app",
-  "version": "1.4.7",
+  "version": "1.4.8",
   "description": "infrastructure app for incruiter",
   "type": "module",
   "main": "index.js",
