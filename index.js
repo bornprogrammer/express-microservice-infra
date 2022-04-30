@@ -3,7 +3,7 @@ import HttpHelper from "./src/helpers/HttpHelper.js";
 import joiValidationHelper from "./src/helpers/joiValidationHelper.js";
 import mongooseWhereCluaseHelperIns from "./src/helpers/MongooseWhereCluaseHelper.js";
 import RandomStringGenerator from "./src/helpers/RandomStringGenerator.js";
-import s3BucketFileUploaderIns from "./src/helpers/S3BucketFileUploader.js";
+import s3BucketFileUploader from "./src/helpers/S3BucketFileUploader.js";
 import UtilHelper from "./src/helpers/UtilHelper.js";
 import BaseController from "./src/controllers/BaseController.js";
 import BaseAppService from "./src/app-services/BaseAppService.js";
@@ -24,7 +24,7 @@ export default {
   BaseService,
   IncruiterErrors,
   UtilHelper,
-  s3BucketFileUploaderIns,
+  s3BucketFileUploader,
   appMiddleware,
   multerUploaderIns,
   Constants,

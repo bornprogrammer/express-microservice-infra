@@ -1,4 +1,3 @@
-
 import EntityStatus from "./EntityStatus.js";
 
 import HttpMethod from "./HttpMethod.js";
@@ -15,4 +14,6 @@ import EntityCreatedType from "./EntityCreatedType.js";
 
 import EnvironmentType from "./EnvironmentType.js";
 
-export default { EntityStatus, HttpMethod, HttpResponseStatus, SignUpType, UserStatus, UserType, EntityCreatedType, EnvironmentType };
+import RoleType from "./RoleType.js";
+
+export default { EntityStatus, HttpMethod, HttpResponseStatus, SignUpType, UserStatus, UserType, EntityCreatedType, EnvironmentType, RoleType };

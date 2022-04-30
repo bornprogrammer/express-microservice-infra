@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import HttpResponseStatus from "../constants/HttpResponseStatus.js";
 import IncruiterServiceApiResponseError from "../errors/IncruiterServiceApiResponseError.js";
 import HttpHelper from "../helpers/HttpHelper.js";
+import UtilHelper from "../helpers/UtilHelper.js";
 
 const { ObjectId } = mongoose.Types;
 // will be extended by child app classed to be used for calling another micro service
@@ -135,7 +136,14 @@ export default class BaseAppService {
 
   async fetchResouresByCollections(collection, collectionKey) {
     const collectionIds = await this.extractOutIdsFromCollection(collection, collectionKey);
-    const result = await this.getResourcesByMultipleIds(collectionIds);
+    // const result = await this.getResourcesByMultipleIds(collectionIds);
+    let result = []
+    if (UtilHelper.isArrayValid(collectionIds)) {
+      const commaSeperatedIds = collectionIds.join(",");
+      result = await this.getResourcesByMultipleIds(commaSeperatedIds);
+      return result;
+    }
+    // return [];
     return result;
   }
 
@@ -159,12 +167,13 @@ export default class BaseAppService {
     return [];
   }
 
-  async getResourcesByMultipleIds(idsArray) {
-    if (idsArray && idsArray instanceof Array && idsArray.length > 0) {
-      const commaSeperatedIds = idsArray.join(",");
-      const result = await this.setPath([commaSeperatedIds]).get();
-      return result;
-    }
-    return [];
+  async getResourcesByMultipleIds(commaSeperatedIds) {
+    // if (idsArray && idsArray instanceof Array && idsArray.length > 0) {
+    //   const commaSeperatedIds = idsArray.join(",");
+    //   const result = await this.setPath([commaSeperatedIds]).get();
+    //   return result;
+    // }
+    const result = await this.setPath([commaSeperatedIds]).get();
+    return result;
   }
 }
