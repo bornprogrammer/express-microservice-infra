@@ -104,11 +104,11 @@ export default class BaseAppService {
    * @param {*} key 
    * @returns 
    */
-  async mergeResouresToCollections(collection, resources, collectionKey, resourceKey = "_id") {
+  async mergeResouresToCollections(collection, resources, collectionKey, resourceKey = "_id", mergeKey = "") {
     if (collection && resources && collection instanceof Array && resources instanceof Array && collection.length > 0 && resources.length > 0) {
       return collection.map((item) => {
         const collectionItemValue = item[collectionKey];
-        const findById = (resourcesList, id) => resourcesList.find((resourceItem) => resourceItem["_id"] === id.toString());
+        const findById = (resourcesList, id) => resourcesList.find((resourceItem) => resourceItem[resourceKey] === id.toString());
         let mappedResources;
         if (collectionItemValue && collectionItemValue instanceof Array && collectionItemValue.length > 0) {
           mappedResources = collectionItemValue.map((i) => {
@@ -121,16 +121,29 @@ export default class BaseAppService {
         } else {
           mappedResources = collectionItemValue;
         }
-        item["_doc"][collectionKey] = mappedResources;
+        mergeKey = mergeKey || collectionKey;
+        if (item["_doc"]) {
+          item["_doc"][mergeKey] = mappedResources;
+        } else {
+          item[mergeKey] = mappedResources;
+        }
         return item;
       });
     }
     return collection;
   }
 
-  async fetchNMergeResouresToCollections(collection, collectionKey, resourceKey = "_id") {
+  /**
+   * will be used for extract out the ids by given key and call the api by extracted ids and merge the each item of resp by respective id to given merge key
+   * @param {*} collection 
+   * @param {*} collectionKey 
+   * @param {*} resourceKey 
+   * @param {*} mergeKey 
+   * @returns 
+   */
+  async fetchNMergeResouresToCollections({ collection, collectionKey = "_id", resourceKey = "_id", mergeKey = "" }) {
     const fetchedResources = await this.fetchResouresByCollections(collection, collectionKey);
-    const mergedResult = await this.mergeResouresToCollections(collection, fetchedResources, collectionKey, resourceKey);
+    const mergedResult = await this.mergeResouresToCollections(collection, fetchedResources, collectionKey, resourceKey, mergeKey = "");
     return mergedResult;
   }
 
@@ -167,12 +180,12 @@ export default class BaseAppService {
     return [];
   }
 
+  /**
+   * may be overridden by derived class
+   * @param {*} commaSeperatedIds 
+   * @returns 
+   */
   async getResourcesByMultipleIds(commaSeperatedIds) {
-    // if (idsArray && idsArray instanceof Array && idsArray.length > 0) {
-    //   const commaSeperatedIds = idsArray.join(",");
-    //   const result = await this.setPath([commaSeperatedIds]).get();
-    //   return result;
-    // }
     const result = await this.setPath([commaSeperatedIds]).get();
     return result;
   }
