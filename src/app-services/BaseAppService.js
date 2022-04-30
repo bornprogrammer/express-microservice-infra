@@ -143,7 +143,7 @@ export default class BaseAppService {
    */
   async fetchNMergeResouresToCollections({ collection, collectionKey = "_id", resourceKey = "_id", mergeKey = "" }) {
     const fetchedResources = await this.fetchResouresByCollections(collection, collectionKey);
-    const mergedResult = await this.mergeResouresToCollections(collection, fetchedResources, collectionKey, resourceKey, mergeKey = "");
+    const mergedResult = await this.mergeResouresToCollections(collection, fetchedResources, collectionKey, resourceKey, mergeKey);
     return mergedResult;
   }
 
