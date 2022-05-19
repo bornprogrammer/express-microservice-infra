@@ -42,6 +42,11 @@ class HttpHelper {
     return this;
   }
 
+  setBearerToken(token) {
+    this.axiosConfig.headers = { ...this.axiosConfig.headers, "Authorization": `Bearer ${token}` };
+    return this;
+  }
+
   setQueryString(queryStringObj) {
     this.axiosConfig.params = queryStringObj;
     return this;

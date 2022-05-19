@@ -111,22 +111,28 @@ export default class BaseAppService {
         const findById = (resourcesList, id) => resourcesList.find((resourceItem) => resourceItem[resourceKey] === id.toString());
         let mappedResources;
         if (collectionItemValue && collectionItemValue instanceof Array && collectionItemValue.length > 0) {
-          mappedResources = collectionItemValue.map((i) => {
+          mappedResources = [];
+          collectionItemValue.forEach((i) => {
             const findByIdResult = findById(resources, i);
-            return findByIdResult || i;
-          })
+            if (findByIdResult) {
+              mappedResources = [...mappedResources, findByIdResult];
+            }
+          });
         } else if (collectionItemValue && ObjectId.isValid(collectionItemValue)) {
-          mappedResources = findById(resources, collectionItemValue);
-          mappedResources = mappedResources || collectionItemValue;
+          mappedResources = findById(resources, collectionItemValue) || null;
+          // mappedResources = mappedResources || null;
         } else {
-          mappedResources = collectionItemValue;
+          // mappedResources = collectionItemValue;
         }
+
+        // if (mappedResources) {
         mergeKey = mergeKey || collectionKey;
         if (item["_doc"]) {
           item["_doc"][mergeKey] = mappedResources;
         } else {
-          item[mergeKey] = mappedResources;
+          item[collectionKey] = mappedResources;
         }
+        // }
         return item;
       });
     }
@@ -149,7 +155,6 @@ export default class BaseAppService {
 
   async fetchResouresByCollections(collection, collectionKey) {
     const collectionIds = await this.extractOutIdsFromCollection(collection, collectionKey);
-    // const result = await this.getResourcesByMultipleIds(collectionIds);
     let result = []
     if (UtilHelper.isArrayValid(collectionIds)) {
       const commaSeperatedIds = collectionIds.join(",");
@@ -171,7 +176,7 @@ export default class BaseAppService {
       let idsArray = [];
       collection.forEach((item) => {
         if (item[collectionKey] && item[collectionKey] instanceof Array && item[collectionKey].length > 0) {
-          idsArray = [...item[collectionKey]];
+          idsArray = [...idsArray, ...item[collectionKey]];
         }
         idsArray = [...idsArray, item[collectionKey]];
       });
