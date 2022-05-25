@@ -10,15 +10,23 @@ class S3BucketFileUploader {
   });
 
   async upload(multerFileObject, clientFolderName, objectTypeFolderName) {
-    const fileContent = await fsPromise.readFile(multerFileObject.path);
-    const bucketNameWithFolderName = `${config.get("aws.bucket_name")}/${clientFolderName}/${objectTypeFolderName}`;
-    const params = { Bucket: bucketNameWithFolderName, Key: multerFileObject.filename, Body: fileContent, CreateBucketConfiguration: { LocationConstraint: process.env.aws_region } };
-    const result = await this.s3Bucket.upload(params).promise();
-    return result;
+    if (multerFileObject && Object.keys(multerFileObject).length > 0) {
+      const fileContent = await fsPromise.readFile(multerFileObject.path);
+      const bucketNameWithFolderName = `${config.get("aws.bucket_name")}/${clientFolderName}/${objectTypeFolderName}`;
+      const params = { Bucket: bucketNameWithFolderName, Key: multerFileObject.filename, Body: fileContent, CreateBucketConfiguration: { LocationConstraint: process.env.aws_region } };
+      const result = await this.s3Bucket.upload(params).promise();
+      return result;
+    }
+    return null;
   }
 
   async buildProfilePhotoS3URL(clientName, fileName) {
     const fileUrl = await this.buildS3ObjectURL(clientName, config.get("aws.folders.profile_photo"), fileName);
+    return fileUrl;
+  }
+
+  async buildBusinessLogoS3URL(clientName, fileName) {
+    const fileUrl = await this.buildS3ObjectURL(clientName, config.get("aws.folders.business_logo"), fileName);
     return fileUrl;
   }
 
