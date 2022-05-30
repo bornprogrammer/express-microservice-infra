@@ -180,7 +180,7 @@ export default class BaseAppService {
         }
         idsArray = [...idsArray, item[collectionKey]];
       });
-      return idsArray;
+      return idsArray.filter((id) => id && id.length > 0);
     }
     return [];
   }
