@@ -5,6 +5,7 @@ import mongooseWhereCluaseHelperIns from "./src/helpers/MongooseWhereCluaseHelpe
 import RandomStringGenerator from "./src/helpers/RandomStringGenerator.js";
 import s3BucketFileUploader from "./src/helpers/S3BucketFileUploader.js";
 import UtilHelper from "./src/helpers/UtilHelper.js";
+import EmailHelper from "./src/helpers/EmailHelper.js";
 import BaseController from "./src/controllers/BaseController.js";
 import BaseAppService from "./src/app-services/BaseAppService.js";
 import BaseService from "./src/services/BaseService.js";
@@ -32,6 +33,7 @@ export default {
   BaseAppService,
   mongooseWhereCluaseHelperIns,
   RandomStringGenerator,
+  EmailHelper,
 }
 
 

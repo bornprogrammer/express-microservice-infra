@@ -180,7 +180,8 @@ export default class BaseAppService {
         }
         idsArray = [...idsArray, item[collectionKey]];
       });
-      return idsArray.filter((id) => id && id.length > 0);
+      idsArray = idsArray.filter((id) => id && id.toString().length > 0);
+      return idsArray;
     }
     return [];
   }

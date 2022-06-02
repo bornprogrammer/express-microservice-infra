@@ -1,3 +1,4 @@
+import fsPromise from "fs/promises";
 
 export default class UtilHelper {
 
@@ -11,6 +12,11 @@ export default class UtilHelper {
 
   static isObjecyValid(obj) {
     return obj && obj instanceof Object && Object.keys(obj).length > 0;
+  }
+
+  static async readFile(path) {
+    const fileData = await fsPromise.readFile(path, "utf8");
+    return fileData;
   }
 
   static validJSONString(jsonString) {
