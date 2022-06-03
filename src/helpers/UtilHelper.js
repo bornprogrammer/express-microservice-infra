@@ -19,6 +19,11 @@ export default class UtilHelper {
     return fileData;
   }
 
+  static async reaEmailTempFile(fileName) {
+    const htmlStr = await UtilHelper.readFile(`./src/email-temps/${fileName}`);
+    return htmlStr;
+  }
+
   static validJSONString(jsonString) {
     let isValidJsonString = false;
     if (jsonString) {

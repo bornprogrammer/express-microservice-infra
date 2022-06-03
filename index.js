@@ -14,6 +14,7 @@ import appMiddleware from "./src/middlewares/AppMiddleware.js";
 import multerUploaderIns from "./src/middlewares/MulterUploader.js";
 import Constants from "./src/constants/index.js";
 import logger from "./src/loggers/Logger.js";
+import BaseEvent from "./src/events/BaseEvent.js";
 
 const mongooseConnection = conn;
 export default {
@@ -34,6 +35,7 @@ export default {
   mongooseWhereCluaseHelperIns,
   RandomStringGenerator,
   EmailHelper,
+  BaseEvent,
 }
 
 
